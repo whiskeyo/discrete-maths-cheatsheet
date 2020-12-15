@@ -24,6 +24,10 @@ $d | n_1 \wedge d | n_2$ to $d | (n_1 + n_2)$
 Niech $a, b \in \mathbb{N}$, wtedy \\
 $\gcd(a,b) = \max \{ d \in \mathbb{N} : d|a \wedge d|b \}$
 
+\subsection*{Własności NWD}
+Dla $a > b$ względnie pierwszych ($a \perp b$) i $0 \leq m < n$: \\
+$\gcd(a^n - b^n, a^m - b^m) = a^{\gcd(m,n)} - b^{\gcd(m,n)}$.
+
 \subsection*{Algorytm Euklidesa}
 Dla $a \geq b > 0$ korzystamy z własności:
 $\gcd(a,b) = \gcd(b, a \Mod{b})$ oraz $\gcd(a, 0) = a$.
@@ -61,3 +65,8 @@ gcd(a, b):
 \subsection*{Liczby względnie pierwsze}
 Niech $a, b \in \mathbb{Z}$, wtedy te liczby są względnie pierwsze, gdy
 $\gcd(a, b) = 1$.
+
+\subsection*{Coś o liczbach pierwszych}
+1. Jeśli $2^n - 1$ jest liczbą pierwszą, to $n$ jest liczbą pierwszą. \\
+2. Jeśli $a^n - 1$ jest liczbą pierwszą, to $a = 2$. \\
+3. Jeśli $2^n + 1$ jest liczbą pierwszą, to $n$ jest potęgą liczby $2$.

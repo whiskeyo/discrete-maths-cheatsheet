@@ -42,6 +42,15 @@ Dla $k, n \in \mathbb{N}$ takich, że $0 \leq k \leq n$ zachodzi:
 $\binom{n}{k} = \binom{n}{n-k}$ \\
 $\binom{n}{k} + \binom{n}{k+1} = \binom{n+1}{k+1}$
 
+\subsection*{Tożsamość absorpcyjna}
+Dla $k \geq 1$ zachodzi $\binom{n}{k} = \frac{n}{k} \binom{n-1}{k-1}$.
+
+\subsection*{Tożsamość Cauchy'ego}
+$\binom{m+n}{r} = \sum\limits_{i=0}^{r} \binom{m}{i} \binom{n}{r-i}$
+
+\subsection*{Tożsamość Pascala}
+$\binom{n+1}{k+1} = \binom{n}{k} + \binom{n}{k+1}$
+
 \subsection*{Kulki i szufladki}
 $n$ kulek do $k$ szuflad można wrzucić na tyle sposobów, ile jest ciągów złożonych
 z $n$ zer i $k-1$ jedynek, czyli $\binom{n+k-1}{k-1}$.
@@ -49,6 +58,9 @@ z $n$ zer i $k-1$ jedynek, czyli $\binom{n+k-1}{k-1}$.
 \subsection*{Dwumian Newtona}
 Dla $n \in \mathbb{N}$ mamy 
 $(x+y)^n = \sum\limits_{i=0}^{n} \binom{n}{i} x^i y^{n-i}$.
+
+\subsection*{Inna tożsamość (jaka?)}
+$\binom{n}{k} \binom{k}{m} = \binom{n}{m} \binom{m-k}{n-k}$
 
 \subsection*{Zasada szufladkowa Dirichleta}
 Niech $k, s \in \mathbb{N}_+$. Jeśli wrzucimy $k$ kulek do $s$ szuflad (Dirichleta),

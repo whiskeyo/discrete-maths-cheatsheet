@@ -1,7 +1,27 @@
 \section{Rekurencja, zależności rekurencyjne}
 
 \subsection*{Liczby Fibonacciego}
-Niech $F_0 = 0, F_1 = 1$, wtedy $F_n = F_{n-1} + F_{n-2}$ dla $n > 1$.
+Niech $F_0 = 0, F_1 = 1$, wtedy $F_n = F_{n-1} + F_{n-2}$ dla $n > 1$. 
+
+\subsection*{Własności liczb Fibonacciego}
+Każde dwie kolejne liczby Fibonacciego są względnie pierwsze. \\
+$\gcd(F_m, F_n) = F_{\gcd(m, n)}$
+
+\subsection*{Szereg harmoniczna}
+$H_n = H_{n-1} + \frac{1}{n}$
+
+\subsection*{Podział płaszczyzny na obszary}
+$$
+p_n =
+\begin{cases}
+    1 &\text{ dla } n = 0 \\
+    p_{n-1} + n &\text{ dla } n \geq 1 
+\end{cases}
+$$
+
+\subsection*{Liczba nieporządków $n$-elementowych}
+$d_n = n! \cdot \sum\limits_{i=0}^{n} \frac{(-1)^i}{i!}$ \\
+$d_{n+1} = n(d_n + d_{n+1})$ dla $d_0 = 1, d_1 = 0$.
 
 \subsection*{Operator przesunięcia $\annihilator$}
 Mamy ciąg $\sequence{a_n} = \sequence{a_0, a_1, \ldots, a_n, \ldots}$. Wtedy
@@ -55,6 +75,16 @@ $\frac{1}{1-2x}$ dla ciągu $\sequence{2^n}$. \\
 $\frac{1}{(1-x)^2}$ dla ciągu $\sequence{1, 2, 3, \ldots}$. \\
 $\frac{1}{1-x^2}$ dla ciągu $\sequence{0, 1, 0, 1, \ldots}$. \\
 
+\subsection*{Przesunięcie wyrazów w prawo o $k$ miejsc}
+Aby z ciągu $\sequence{a_0, a_1, a_2, \ldots}$ o OGF $A(x)$ otrzymać ciąg 
+$\sequence{0, \ldots, 0, a_0, a_1, \ldots}$, w którym pierwsze $k$ wyrazów jest $0$,
+należy pomnożyć funkcję tworzącą przez $x^k$, więc mamy $x^k A(x)$.
+
+\subsection*{Przesunięcie wyrazów w lewo o $k$ miejsc}
+Aby z takiego ciągu jak wyżej otrzymać ciąg $\sequence{a_{k}, a_{k+1}, \ldots}$,
+należy wykonać takie działanie: \\
+$\frac{A(x) - \left( a_0 x^0 + a_1 x^1 + \ldots + a_{k-1} x^{k-1} \right)}{x^k}$.
+
 \subsection*{Przerwy pomiędzy wyrazami}
 Funkcją tworzącą takiego ciągu $\sequence{a_0, 0, a_1, 0, a_2, 0, \ldots}$ jest
 $\sum\limits_{i=0}^{\infty} a_i x^i = a_0 + a_1 x^2 + a_2 x^4 + \ldots = A(x^2)$.
@@ -75,6 +105,11 @@ $\sequence{0, \frac{a_1}{1}, \frac{a_2}{2}, \ldots, \frac{a_i}{i}, \ldots}$ nale
 scałkować funkcję tworzącą $A(x)$ i przesunąć ją w lewo:
 $\int\limits_{0}^{1} \frac{A(x) - a_0}{x} dx = 
 \sum\limits_{i=0}^{\infty} \frac{a_i}{i} x^{i}$.
+
+\subsection*{Inne funkcje tworzące}
+1. $\sequence{n^2}$ odpowiada OGF $\frac{x(1+x)}{(1-x)^3}$. \\
+2. $\sequence{n^3}$ odpowiada OGF $x \frac{x^2 + 4x + 1}{(1-x)^4}$. \\
+3. $\sequence{\binom{n+k}{k}}$ odpowiada OGF $\frac{1}{(1-x)^{n+1}}$.
 
 \subsection*{Liczba podziałów liczby $n$}
 Dowolne składniki: $\prod\limits_{i=1}^{\infty} \frac{1}{1 - x^i}$ \\

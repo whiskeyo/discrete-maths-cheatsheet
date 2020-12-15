@@ -50,6 +50,11 @@ Marszruta/droga jest zamknięta, gdy $v_0 = v_k$. Zamknięta ścieżka to cykl.
 Nieskierowany graf $G = (V, E)$ jest spójny, jeśli z każdego wierzchołka da się
 dojść do innego, tzn. dla każdego wierzchołka $u,v \in V$ istnieje $u-v$-ścieżka.
 
+\subsection*{Dopełnienie grafu}
+Dopełnienie grafu $G$ oznaczamy przez $\comp{G}$, a definiujemy je jako graf
+$\comp{G} = (V, E^\prime)$ taki, że $\{ u,v \} \in E^\prime$ wtw, gdy
+$\{ u,v \} \notin E$.
+
 \subsection*{Podgraf}
 Podgrafem grafu $G = (V, E)$ jest dowolny graf $H = (V^\prime, E^\prime)$ taki,
 że $V^\prime \subseteq V$ i $E^\prime \subseteq E$. Podgraf jest właściwy, jeśli
@@ -85,12 +90,25 @@ Wtedy wszystkie następujące stwierdzenia są równoważne: \\
 5. $G$ jest spójny i każda krawędź jest mostem. \\
 6. $G$ nie ma cykli, ale dołożenie jakiejkolwiek krawędzi tworzy cykl.
 
+\subsection*{Liczba liści w dowolnym drzewie}
+Niech $t_i$ oznacza liczbę wierzchołków stopnia $i$ w drzewie, wtedy \\
+$t_1 = \sum\limits_{i=3}^{n} (i-2)t_i + 2$
+oznacza liczbę liści w drzewie. Nie zależy ona od $t_2$, gdyż "przedłużenie"
+liścia kolejną krawędzią nie zmienia liczby liści w drzewie.
+
+\subsection*{Wierzchołek centralny, promień grafu}
+Niech $d(u,v)$ oznacza odległość wierzchołków $u, v$, czyli długość najkrótszej
+ścieżki łączącej je. Dla każdego wierzchołka $v$ definiujemy \\
+$r(v) = \max \{ d(v, u) : u \in V(G) \}$. Wierzchołek $w$, dla którego 
+$r(w) = \min \{ r(v) : v \in V(G) \}$ nazywamy wierzchołkiem centralnym grafu
+$G$, a liczbę $r(G) = r(w)$ promieniem grafu $G$.
+
 \subsection*{Graf dwudzielny}
 Graf $G = (V, E)$ jest dwudzielny wtw, gdy istnieje podział zbioru $V$ na 
 zbiory $A$ i $B$ taki, że dla każdej krawędzi $e \in E$ jeden koniec $e$
 należy do zbioru $A$, a drugi do zbioru $B$. Podział wierzchołków nie zawsze
-jest jednoznaczny! \\
-Graf $G$ jest dwudzielny wtw, gdy nie zawiera cyklu o nieparzystej długości.
+jest jednoznaczny! Graf $G$ jest dwudzielny wtw, gdy nie zawiera cyklu 
+o nieparzystej długości.
 
 \subsection*{Lemat o zamkniętej marszrucie}
 Każda zamknięta marszruta o nieparzystej długości zawiera cykl o nieparzystej
@@ -100,6 +118,33 @@ długości.
 Niech $G$ będzie grafem prostym, w którym każdy wierzchołek ma stopień 
 przynajmniej $k$. Wówczas $G$ zawiera ścieżkę o długości $k$. Jeśli $k \geq 2$,
 to $G$ zawiera cykl o długości przynajmniej $k+1$.
+
+\subsection*{Algorytmy przeszukiwania grafów}
+\textbf{Przeszukiwanie grafu w głąb}
+\begin{lstlisting}[style=code]
+DFS(u):
+  u.visited = true
+    for each neighbour v of u:
+      if not v.visited
+        DFS(v)
+\end{lstlisting}
+
+\textbf{Przeszukiwanie grafu wszerz}
+\begin{lstlisting}[style=code]
+BFS(v):
+  queue Q = {}
+  Q.enqueue(v)
+  v.visited = true
+    
+  while (Q != empty):
+    u = Q.dequeue()
+      for each neighbour w of u:
+        if not w.visited:
+          Q.enqueue(w)
+          w.visited = true
+\end{lstlisting}
+Powyższe algorytmy są często wykorzystywane (z lekkimi modyfikacjami) 
+do wielu celów, także warto je znać. Czas działania DFS oraz BFS to $O(V + E)$.
 
 \subsection*{Drzewo rozpinające}
 Niech $G = (V, E)$ będzie grafem spójnym. Drzewo rozpinające grafu $G$ to 
@@ -123,20 +168,20 @@ grafu $G$ jest drzewo rozpinające $T$ o minimalnej wadze.
 aby nie stworzyły one żadnego cyklu.
 \begin{lstlisting}[style=code]
 KRUSKAL:
-sort(E) wzgledem wagi
-T = {}
-for i in [1, m]:
+  sort(E) wzgledem wagi
+  T = {}
+  for i in [1, m]:
     if (T + {e(i)} nie tworzy 
         zadnego cyklu):
-        T = T + {e(i)}
+      T = T + {e(i)}
 \end{lstlisting}
 
 \textbf{Algorytm Prima} polega na dobieraniu najlżejszych krawędzi do grafu $T$.
 \begin{lstlisting}[style=code]
 PRIM:
-T = {}
-U = {1} (dowolny wierzcholek G)
-while (U != V):
+  T = {}
+  U = {1} (dowolny wierzcholek G)
+  while (U != V):
     e = najlzejsza krawedz (u, v),
         taka ze u jest z U, 
         a v jest z V-U
@@ -148,8 +193,8 @@ while (U != V):
 ich w superwierzchołki i wykonywaniu algorytmu od początku.
 \begin{lstlisting}[style=code]
 BORUVKA:
-T = V
-while (T != MST):
+  T = V
+  while (T != MST):
     wybierz najmniejsza krawedz
     z najmniejsza waga i dodaj
     ja do zbioru E'
@@ -160,6 +205,8 @@ while (T != MST):
     superwierzcholki i wykonaj
     algorytm od poczatku
 \end{lstlisting}
+Wszystkie powyżej przedstawione algorytmy działają w czasie \\
+$O(\abs{E} \cdot \log \abs{V})$.
 
 \subsection*{Skojarzenie (matching)}
 Niech $G = (V, E)$ będzie grafem spójnym. Skojarzenie grafu $G$ to dowolny pozdbiór
