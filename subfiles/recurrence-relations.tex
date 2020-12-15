@@ -1,0 +1,17 @@
+\section{Rekurencja, zależności rekurencyjne}
+
+\subsection*{Liczby Fibonacciego}
+Niech $F_0 = 0, F_1 = 1$, wtedy $F_n = F_{n-1} + F_{n-2}$ dla $n > 1$.
+
+\subsection*{Operator przesunięcia $\annihilator$}
+Mamy ciąg $\sequence{a_n} = \sequence{a_0, a_1, \ldots, a_n, \ldots}$. Wtedy
+$\seqAnnihilator{a_n} = \sequence{a_{n+1}} = \sequence{a_1, \ldots, a_n, \ldots}$.
+
+\subsection*{Złożenie operatora przesunięcia}
+$\annihilator^2 \sequence{a_n} = \annihilator \left( \seqAnnihilator{a_n} \right)
+= \sequence{a_2, \ldots, a_n, \ldots}$
+
+\subsection*{Operatory działające na ciągi}
+$\sequence{a_n} + \sequence{b_n} = \sequence{a_n + b_n} = \sequence{a_0 + b_0, 
+a_1 + b_1, \ldots}$ \\
+$c \sequence{a_n} = \sequence{c a_n} = \sequence{ca_0, ca_1, \ldots}$

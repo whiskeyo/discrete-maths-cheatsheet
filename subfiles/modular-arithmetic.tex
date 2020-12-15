@@ -1,0 +1,63 @@
+\section{Arytmetyka modularna}
+
+\subsection*{Funkcja modulo}
+Niech $n, d \in \mathbb{Z}$ i $d \neq 0$. Wtedy: \\
+$n \Mod{d} = n - \floor{\frac{n}{d}} \cdot d$. \\
+
+$n \Mod{d} = r$ wtw, gdy ${0 \leq r < d} \ \wedge \ {\exists (k \in \mathbb{Z})} \ {n = kd + r}$
+
+\subsection*{Przystawanie modulo}
+$a \conv{n} b$ wtw, gdy $a \Mod{n} = b \Mod{n}$
+
+\subsection*{Własności funkcji modulo}
+$a + b \conv{n} a \Mod{n} + b \Mod{n}$ \\
+$a \cdot b \conv{n} (a \Mod{n}) \cdot (b \Mod{n})$
+
+\subsection*{Podzielność}
+Niech $n, d \in \mathbb{Z}$ i $d \neq 0$. Wtedy: \\
+$d | n$ wtw, gdy $\exists (k \in \mathbb{Z}) \ n = kd$ \\
+$d | n$ wtw, gdy $n \Mod{d} = 0$ \\
+$d | n$ wtw, gdy $n \conv{d} 0$ \\
+$d | n_1 \wedge d | n_2$ to $d | (n_1 + n_2)$
+
+\subsection*{Największy wspólny dzielnik (NWD, gcd)}
+Niech $a, b \in \mathbb{N}$, wtedy \\
+$\gcd(a,b) = \max \{ d \in \mathbb{N} : d|a \wedge d|b \}$
+
+\subsection*{Algorytm Euklidesa}
+Dla $a \geq b > 0$ korzystamy z własności:
+$\gcd(a,b) = \gcd(b, a \Mod{b})$ oraz $\gcd(a, 0) = a$.
+\begin{lstlisting}[style=code]
+gcd(a, b):
+    while b != 0:
+        c = a mod b
+        a = b
+        b = c
+    return a
+\end{lstlisting}
+
+\subsection*{Rozszerzony algorytm Euklidesa}
+Dla $a \geq b > 0$: \\
+$\exists (x, y \in \mathbb{Z}) \ xa + yb = \gcd(a, b)$
+\begin{lstlisting}[style=code]
+gcd(a, b):
+    x = 1, y = 0, r = 0, s = 1
+    while b != 0:
+        c = a mod b
+        q = a div b
+        a = b
+        b = c
+
+        r' = r
+        s' = s
+        r = x - q * r
+        s = y - q * s
+        x = r'
+        y = s'
+    
+    return a, x, y
+\end{lstlisting}
+
+\subsection*{Liczby względnie pierwsze}
+Niech $a, b \in \mathbb{Z}$, wtedy te liczby są względnie pierwsze, gdy
+$\gcd(a, b) = 1$.

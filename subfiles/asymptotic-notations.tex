@@ -1,0 +1,28 @@
+\section{Asymptotyka}
+Niech $f, g : \mathbb{N} \to \mathbb{R} \geq 0$, wtedy możemy mówić o takich
+funkcjach asymptotycznych:
+
+\subsection*{Notacja dużego $O$}
+Mamy ${f(n) = O(g(n))}$ wtw, gdy
+${\exists (c > 0)} \ {\exists (n_0 \in \mathbb{N})} \ {\forall (n \geq n_0)} \
+{f(n) < cg(n)}$. Ponadto dla ${C, a, \alpha, \beta \in \mathbb{R}}$ zachodzą takie
+własności: \\
+$\forall (\alpha, \beta) \ \alpha \leq \beta \Rightarrow n^\alpha = O(n^\beta)$, \\
+$\forall (\alpha > 1) n^C = O(a^n)$, \\
+$\forall (\alpha > 0) (\ln n)^C = O(n^\alpha)$. \\
+Przydatna może okazać się reguła de l'Hospitala, więc gdy $f(n)$ i $g(n)$ dążą do
+nieskończoności, to ${\lim_{n \to \infty} \frac{f(n)}{g(n)}} = 
+{\lim_{n \to \infty} \frac{f^\prime (n)}{g^\prime (n)}}$.
+
+\subsection*{Notacja małego $o$}
+${f(n) = o(g(n))}$ wtw, gdy ${\lim_{n \to \infty} \frac{f(n)}{g(n)} = 0}$.
+
+\subsection*{Notacja duże Omega ($\Omega$)}
+$f(n) = \Omega(g(n))$ wtw, gdy ${\exists (c > 0)} {\exists (n_0 \in \mathbb{N})} 
+{\forall (n \geq n_0)}  {f(n) \geq cg(n)}$.
+
+\subsection*{Notacja Theta ($\Theta$)}
+$f(n) = \Theta(g(n))$ wtw, gdy ${f(n) = \Omega(g(n))} \wedge {f(n) = O(g(n))}$.
+
+\subsection*{Notacja małe Omega ($\omega$)}
+$f(n) = \omega(g(n))$ wtw, gdy ${\lim_{n \to \infty} = \frac{f(n)}{g(n)} = \infty}$.

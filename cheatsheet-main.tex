@@ -1,0 +1,82 @@
+\documentclass[10pt,landscape,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}
+%\usepackage[LY1,T1]{fontenc}
+%\usepackage{frutigernext}
+%\usepackage[lf,minionint]{MinionPro}
+\usepackage{tikz}
+\usetikzlibrary{shapes,positioning,arrows,fit,calc,graphs,graphs.standard}
+\usepackage[nosf]{kpfonts}
+\usepackage[t1]{sourcesanspro}
+\usepackage{multicol}
+\usepackage{wrapfig}
+\usepackage[top=2mm,bottom=5mm,left=2mm,right=2mm]{geometry}
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage{microtype}
+\usepackage{pdfpages}
+
+%% moje definicje:
+\usepackage{enumerate}
+\usepackage{amssymb}		% pakiet do symboli
+\usepackage{mathtools}		% pakiet do matmy (rozszerza amsmath)
+\usepackage{enumitem}		% punktowanie (a), (b), ...
+\usepackage{nopageno}		% brak numerow stron
+\usepackage{graphicx}		% wstawianie obrazkow
+\usepackage{float}			% wstawianie obrazkow w dowolnym miejscu
+\usepackage{caption}
+\usepackage{esdiff}         % pochodne \diff{}{}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{adjustbox}
+\usepackage[none]{hyphenat} % usunięcie łamania wyrazów na końcu linii
+
+% nowe komendy dla wygodniejszego pisania :)
+
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}	% podłoga
+\newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}		% sufit
+\newcommand{\fractional}[1]{\left\{ #1 \right\}}		% część ułamkowa {x}
+\newcommand{\abs}[1]{\left| #1 \right|}					% wartosc bezwzgledna / moc
+\newcommand{\set}[1]{\left \{ #1 \right \}}				% zbiór elementów {a,b,c}
+\newcommand{\pair}[1]{\left( #1 \right)}				% para elementów (a,b)
+\newcommand{\Mod}[1]{\ \mathrm{mod\ #1}}				% lekko zmodyfikowane modulo
+\newcommand{\conv}[1]{\equiv_{#1}}                      % przystawanie
+\newcommand{\comp}[1]{\overline{ #1 }} 					% dopełnienie zbioru 
+\newcommand{\annihilator}{\mathbf{E}}					% operator E
+\newcommand{\seqAnnihilator}[1]{\annihilator \left\langle #1 \right\rangle} % E(a_n)
+\newcommand{\sequence}[1]{\left\langle #1 \right\rangle} % <a_n>
+\DeclareMathOperator{\lcm}{lcm}							% obsługa lcm w mathmode
+
+% styl do kodu
+\lstdefinestyle{code}{%
+basicstyle=\ttfamily\small,
+commentstyle=\color{green!60!black},
+keywordstyle=\color{magenta},
+stringstyle=\color{blue!50!red},
+showstringspaces=false,
+%numbers=left,
+%numberstyle=\footnotesize\color{gray},
+%numbersep=10pt,
+tabsize=4,
+rulecolor=\color{red},
+breaklines=true
+}
+
+\newcommand{\code}[1]{\lstinline[style=code]{#1}} % kod inline
+%%
+
+\let\bar\overline
+
+\include{subfiles/definitions}
+
+\begin{document}
+%\footnotesize
+\small
+\begin{multicols*}{5}
+\input{subfiles/variations}
+\input{subfiles/asymptotic-notations}
+\input{subfiles/modular-arithmetic}
+\input{subfiles/inclusion-exclusion}
+\input{subfiles/recurrence-relations}
+\end{multicols*}
+\end{document}

@@ -1,0 +1,58 @@
+\section{Wariacje}
+\subsection*{Liczba wariacji z powtórzeniami}
+Dla zbiorów $A, B$ o odpowiednio $m, n$ elementach liczba funkcji ze zbioru $A$ w $B$
+wynosi $n^m$, czyli $\abs{\{ f: A \to B \} = n^m}$.
+
+\subsection*{Liczba wariacji bez powtórzeń}
+Dla zbiorów $A, B$ o odpowiednio $m, n$ elementach liczba funkcji różnowartościowych
+ze zbioru $A$ w $B$ wynosi $n (n - 1) \ldots (n - m + 1) = \frac{n!}{(n - m)!}$.
+
+\subsection*{Liczba podzbiorów}
+Zbiór $A$ o $n$ elementach ma $\abs{\{ B : B \subseteq A \} = 2^n}$ podzbiorów.
+
+\subsection*{Para podzbiorów}
+Dla $U$ będącego $n$-elementowym można wyznaczyć dwa jego podzbiory $A, B$ takie,
+że $A \subseteq B$ na $\abs{\{ (A,B) : A \subseteq B \subseteq U \}} = 
+\abs{\{ f: U \to \{ 0, 1, 2 \} \}} = 3^n$ sposobów.
+
+\subsection*{Liczba permutacji}
+Zbiór $U$ o $n$ elementach można spermutować na $n!$ sposobów.
+
+\subsection*{Sufit, podłoga, część ułamkowa}
+Niech $x \in \mathbb{R}, n \in \mathbb{Z}$, wtedy: \\
+$ \floor{x} = n \Leftrightarrow n \leq x < n + 1 $ \\
+$ \ceil{x}  = n \Leftrightarrow n - 1 < x \leq n $ \\
+$ \fractional{x} = x - \floor{x} $
+
+\subsection*{Własności sufitu i podłogi}
+Niech $x \in \mathbb{R}, n \in \mathbb{Z}$, wtedy: \\
+$ \floor{x + n} = n + \floor{x} $, ponieważ \\
+$ \floor{x} + n \leq x + n < \floor{x} + n + 1 $. \\
+Ponadto mamy: \\
+$ \ceil{x + n} = n + \ceil{x} $ \\
+$ \floor{-x} = -\ceil{x} $
+
+\subsection*{Podzbiory k-elementowe}
+Niech $\abs{U} = \{ 1, 2, \ldots, n \}$ oraz $P_n^k = {\{ A \subseteq U : \abs{A} = k \}}$.
+Wtedy ${\frac{n!}{(n - k)!}} = {k! \abs{P_n^k}}$, czyli 
+$\abs{P_n^k} = \frac{n!}{(n - k)! k!} = \binom{n}{k}$.
+
+\subsection*{Symbol Newtona}
+Dla $k, n \in \mathbb{N}$ takich, że $0 \leq k \leq n$ zachodzi:
+$\binom{n}{k} = \binom{n}{n-k}$ \\
+$\binom{n}{k} + \binom{n}{k+1} = \binom{n+1}{k+1}$
+
+\subsection*{Kulki i szufladki}
+$n$ kulek do $k$ szuflad można wrzucić na tyle sposobów, ile jest ciągów złożonych
+z $n$ zer i $k-1$ jedynek, czyli $\binom{n+k-1}{k-1}$.
+
+\subsection*{Dwumian Newtona}
+Dla $n \in \mathbb{N}$ mamy 
+$(x+y)^n = \sum\limits_{i=0}^{n} \binom{n}{i} x^i y^{n-i}$.
+
+\subsection*{Zasada szufladkowa Dirichleta}
+Niech $k, s \in \mathbb{N}_+$. Jeśli wrzucimy $k$ kulek do $s$ szuflad (Dirichleta),
+a kulek jest więcej niż szuflad ($k > s$), to w którejś szufladzie będą przynajmniej
+dwie kulki. Innymi słowy, dla skończonych zbiorów $A, B$, jeśli $\abs{A} > \abs{B}$,
+to nie istnieje funkcja różnowartościowa z $A$ w $B$. Dla $k > s\cdot i$ kulek oraz
+$s$ szuflad będzie w jakiejś szufladzie $i + 1$ kulek.
