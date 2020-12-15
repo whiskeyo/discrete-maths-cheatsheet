@@ -13,5 +13,91 @@ $\annihilator^2 \sequence{a_n} = \annihilator \left( \seqAnnihilator{a_n} \right
 
 \subsection*{Operatory działające na ciągi}
 $\sequence{a_n} + \sequence{b_n} = \sequence{a_n + b_n} = \sequence{a_0 + b_0, 
-a_1 + b_1, \ldots}$ \\
+\ldots}$ \\
 $c \sequence{a_n} = \sequence{c a_n} = \sequence{ca_0, ca_1, \ldots}$
+
+\subsection*{Co anihiluje dane ciągi?}
+$\sequence{\alpha}$ anihiluje $\annihilator - 1$. \\
+$\sequence{\alpha a^i}$ anihiluje $\annihilator - a$. \\
+$\sequence{\alpha a^i + \beta b^i}$ anihiluje $(\annihilator - a)(\annihilator - b)$. \\
+$\sequence{\sum\limits_{k=0}^{n} \alpha_k a_k^i}$ anihiluje 
+$\prod\limits_{k=0}^{n} (\annihilator - a_k)$. \\
+$\sequence{\alpha i + \beta}$ anihiluje $(\annihilator - 1)^2$. \\
+$\sequence{(\alpha i + \beta) a^i}$ anihiluje $(\annihilator - a)^2$. \\
+$\sequence{(\alpha i + \beta) a_i + \gamma b^i}$ anihiluje
+$(\annihilator - a)^2 (\annihilator - b)$. \\
+$\sequence{\sum\limits_{k=0}^{n-1} \alpha_k i^k} a^i$ anihiluje 
+$(\annihilator - a)^n$. \\
+
+\subsection*{Dodatkowe własności anihilatorów}
+Jeśli $\annihilator_A$ anihiluje $\sequence{a_i}$, to ten sam anihilator anihiluje
+również ciąg $c \sequence{a_n}$ dla dowolnej stałej $c$. \\
+Jeśli $\annihilator_A$ anihiluje $\sequence{a_i}$ i $\annihilator_B$ anihiluje
+$\sequence{b_i}$, to $\annihilator_A \annihilator_B$ anihiluje
+$\sequence{a_i} \pm \sequence{b_i}$.
+
+\subsection*{Liczby Catalana}
+$C_n$ oznacza $n$-tą liczbę Catalana, wyraża się przez 
+$C_n = \sum\limits_{i=1}^{n} C_{i-1} C_{n-i}$ dla $C_0 = 0$. Można je również
+przedstawić wzorami $C_n = \frac{1}{n+1} \binom{2n}{n} = \frac{(2n)!}{(n+1)!n!}$.
+Spełniają one zależność $C_n = \binom{2n}{n} - \binom{2n}{n+1}$. \\
+Liczby Catalana posiadają różne interpretacje kombinatoryczne, takie jak
+liczba poprawnych rozmieszczeń nawiasów, liczba dróg w układzie współrzędnych
+w I ćwiartce, liczba drzew binarnych, liczba podziałów wielokąta wypukłego na trójkąty.
+
+\subsection*{Funkcje tworzące (OGF)}
+Dla ciągu $\sequence{a_n}$ można utworzyć funkcję 
+$\sum\limits_{i=0}^{\infty} a_i x^i = a_0 + a_1 x + a_2 x^2 + \ldots = A(x)$, która
+jest funkcją tworzącą tego ciągu. Poniżej kilka typowych funkcji tworzących dla
+ciągów: \\
+$\frac{1}{1-x}$ dla ciągu $\sequence{1}$, czyli $\frac{n}{1-x}$ dla $\sequence{n}$. \\
+$\frac{1}{1-2x}$ dla ciągu $\sequence{2^n}$. \\
+$\frac{1}{(1-x)^2}$ dla ciągu $\sequence{1, 2, 3, \ldots}$. \\
+$\frac{1}{1-x^2}$ dla ciągu $\sequence{0, 1, 0, 1, \ldots}$. \\
+
+\subsection*{Przerwy pomiędzy wyrazami}
+Funkcją tworzącą takiego ciągu $\sequence{a_0, 0, a_1, 0, a_2, 0, \ldots}$ jest
+$\sum\limits_{i=0}^{\infty} a_i x^i = a_0 + a_1 x^2 + a_2 x^4 + \ldots = A(x^2)$.
+Dla ciągu o wyrazach co $3$ miejsca byłoby to $A(x^3)$, dla $4$ to $A(x^4)$, dla
+$n$ więc $A(x^n)$.
+
+\subsection*{Co drugi wyraz ciągu (pochodne)}
+Funkcją tworzącą $\sequence{a_0, 0, a_2, 0, a_4, 0, \ldots}$ jest 
+$\frac{A(x) + A(-x)}{2}$, dla $\sequence{0, a_1, 0, a_3, \ldots}$ mamy
+$\frac{A(x) - A(-x)}{2}$. \\ \\
+Funkcją tworzącą takiego ciągu 
+$\sequence{0, a_1, 2a_2, 3a_3, 4a_4, \ldots, ia_i, \ldots}$
+jest pochodna funkcji $A(x)$ przesunięta o jedno miejsce w prawo, a więc $xA^\prime(x)$.
+
+\subsection*{Wykorzystanie całek w OGF}
+Aby odnaleźć funkcję tworzącą ciągu 
+$\sequence{0, \frac{a_1}{1}, \frac{a_2}{2}, \ldots, \frac{a_i}{i}, \ldots}$ należy
+scałkować funkcję tworzącą $A(x)$ i przesunąć ją w lewo:
+$\int\limits_{0}^{1} \frac{A(x) - a_0}{x} dx = 
+\sum\limits_{i=0}^{\infty} \frac{a_i}{i} x^{i}$.
+
+\subsection*{Liczba podziałów liczby $n$}
+Dowolne składniki: $\prod\limits_{i=1}^{\infty} \frac{1}{1 - x^i}$ \\
+Różne składniki: $\prod\limits_{i=1}^{\infty} (1 + x^i)$ \\
+Nieparzyste składniki: $\prod\limits_{i=1}^{\infty} (1 + x^{2i-1})$ \\
+Składniki mniejsze od $m$: $\prod\limits_{i=1}^{m-1} \frac{1}{1 - x^i}$ \\
+Różne potęgi $2$: $\prod\limits_{i=1}^{\infty} (1 + x^{2^i})$
+
+\subsection*{Rekursja uniwersalna}
+Niech $a, b, c$ będą dodatnimi stałymi, rozwiązaniem równania rekurencyjnego
+$$
+T(n) =
+\begin{cases}
+    b                    &\text{ dla } n = 1\\
+    aT(\frac{n}{c}) + bn &\text{ dla } n > 1
+\end{cases}
+$$
+dla $n$ będących potęgą liczby $c$ jest
+$$
+T(n) =
+\begin{cases}
+    O(n)                         &\text{ dla } a < c \\
+    O(n \log n)                  &\text{ dla } a = c \\
+    O\left( n^{\log_c a} \right) &\text{ dla } a > c
+\end{cases}
+$$
