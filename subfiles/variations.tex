@@ -20,17 +20,17 @@ Zbiór $U$ o $n$ elementach można spermutować na $n!$ sposobów.
 
 \subsection*{Sufit, podłoga, część ułamkowa}
 Niech $x \in \mathbb{R}, n \in \mathbb{Z}$, wtedy: \\
-$ \floor{x} = n \Leftrightarrow n \leq x < n + 1 $ \\
-$ \ceil{x}  = n \Leftrightarrow n - 1 < x \leq n $ \\
-$ \fractional{x} = x - \floor{x} $
+1. $ \floor{x} = n \Leftrightarrow n \leq x < n + 1 $ \\
+2. $ \ceil{x}  = n \Leftrightarrow n - 1 < x \leq n $ \\
+3. $ \fractional{x} = x - \floor{x} $
 
 \subsection*{Własności sufitu i podłogi}
 Niech $x \in \mathbb{R}, n \in \mathbb{Z}$, wtedy: \\
-$ \floor{x + n} = n + \floor{x} $, ponieważ \\
+1. $ \floor{x + n} = n + \floor{x} $, ponieważ \\
 $ \floor{x} + n \leq x + n < \floor{x} + n + 1 $. \\
 Ponadto mamy: \\
-$ \ceil{x + n} = n + \ceil{x} $ \\
-$ \floor{-x} = -\ceil{x} $
+2. $ \ceil{x + n} = n + \ceil{x} $ \\
+3. $ \floor{-x} = -\ceil{x} $
 
 \subsection*{Podzbiory k-elementowe}
 Niech $\abs{U} = \{ 1, 2, \ldots, n \}$ oraz $P_n^k = {\{ A \subseteq U : \abs{A} = k \}}$.
@@ -39,8 +39,8 @@ $\abs{P_n^k} = \frac{n!}{(n - k)! k!} = \binom{n}{k}$.
 
 \subsection*{Symbol Newtona}
 Dla $k, n \in \mathbb{N}$ takich, że $0 \leq k \leq n$ zachodzi:
-$\binom{n}{k} = \binom{n}{n-k}$ \\
-$\binom{n}{k} + \binom{n}{k+1} = \binom{n+1}{k+1}$
+1. $\binom{n}{k} = \binom{n}{n-k}$ \\
+2. $\binom{n}{k} + \binom{n}{k+1} = \binom{n+1}{k+1}$
 
 \subsection*{Tożsamość absorpcyjna}
 Dla $k \geq 1$ zachodzi $\binom{n}{k} = \frac{n}{k} \binom{n-1}{k-1}$.
