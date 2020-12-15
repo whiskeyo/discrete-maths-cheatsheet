@@ -1,0 +1,210 @@
+\section{Teoria grafów}
+
+\subsection*{Graf nieskierowany}
+Graf nieskierowany to para zbiorów $(V, E)$, gdzie $E = \{ \{u, v\} : u, v \in V \}$.
+$V$ to zbiór wierzchołków, $E$ to zbiór krawędzi.
+
+\subsection*{"Patologie" w grafach}
+Pętla to krawędź postaci $\{ v, v\}$, a krawędzie równoległe to dwie lub więcej
+krawędzi łączących te same wierzchołki $u,v$ (dla $u \neq v$).
+
+\subsection*{Graf prosty}
+Graf $G = (V, E)$ jest prosty, jeśli nie zawiera pętli ani krawędzi równoległych.
+
+\subsection*{Graf skierowany}
+Graf nieskierowany to para zbiorów $(V, E)$, gdzie $E = \{ (u, v) : u, v \in V \}$.
+$V$ to zbiór wierzchołków, $E$ to zbiór krawędzi skierowanych lub łuków.
+
+\subsection*{Krawędź incydentna}
+Krawędź $e$ jest incydentna do wierzchołka $u$, jeśli jeden z końców $e$ to $u$.
+
+\subsection*{Stopień wierzchołka}
+Stopień wierzchołka $u$ oznaczany przez $\deg(u)$ to liczba krawędzi incydentnych
+do $u$. Każda pętla incydentna do $u$ dokłada się do stopnia $u$ liczbą $2$.
+
+\subsection*{Lemat o uściskach dłoni}
+Niech $G = (V, E)$ będzie nieskierowanym grafem. Wtedy
+$\sum\limits_{v \in V} \deg(v) = 2 \abs{E}$.
+
+\subsection*{Reprezentacje grafów}
+Graf można reprezentować za pomocą list sąsiadów, macierzy sąsiedztwa lub macierzy
+incydencji.
+
+\subsection*{Izomorfizm grafów}
+Dwa grafy nieskierowane proste $G = (V, E)$ i $H = (V^\prime, E^\prime)$ są
+izomorficzne wtw, gdy istnieje bijekcja $f: V \to V^\prime$ taka, że
+$\forall(u, v \in V) \ \{ u,v \} \in E \Leftrightarrow \{ f(u), f(v) \} \in E^\prime$.
+
+\subsection*{Marszruta, ścieżka, droga, cykl}
+Marszruta o długości $k$ to ciąg $\sequence{v_0, v_1, \ldots, v_k}$ taki, że \\
+$\forall(0 \leq i < k) \ \{ v_i, v_{i+1} \} \in E$. \\
+Droga to marszruta, w której żadna krawędź nie występuje dwukrotnie. \\
+Ścieżka to marszruta, w której żaden wierzchołek nie występuje dwukrotnie. \\
+Cykl to marszruta, w której pierwszy wierzchołek jest taki sam jak ostatni,
+a poza tym, żaden wierzchołek nie występuje dwukrotnie.\\
+$u-v$-marszruta to marszruta taka, że $v_0 = u$ i $v_k = v$, analogicznie 
+definiujemy $u-v$-drogę i $u-v$-ścieżkę. \\
+Marszruta/droga jest zamknięta, gdy $v_0 = v_k$. Zamknięta ścieżka to cykl.
+
+\subsection*{Graf spójny}
+Nieskierowany graf $G = (V, E)$ jest spójny, jeśli z każdego wierzchołka da się
+dojść do innego, tzn. dla każdego wierzchołka $u,v \in V$ istnieje $u-v$-ścieżka.
+
+\subsection*{Podgraf}
+Podgrafem grafu $G = (V, E)$ jest dowolny graf $H = (V^\prime, E^\prime)$ taki,
+że $V^\prime \subseteq V$ i $E^\prime \subseteq E$. Podgraf jest właściwy, jeśli
+$G \neq H$.
+
+\subsection*{Spójna składowa}
+Spójna składowa grafu $G$ to dowolny podgraf spójny $H = (V^\prime, E^\prime)$
+grafu $G$, który jest maksymalny ze względu na zawieranie, tzn. taki, że nie
+istnieje podgraf spójny $H^\prime$, którego podgrafem właściwym jest $H$.
+
+\subsection*{Drzewo i las}
+Graf $G = (V, E)$ jest acykliczny, jeśli nie zawiera żadnego cyklu. Las jest
+acyklicznym grafem, a drzewo acyklicznym grafem spójnym. Drzewa są spójnymi
+składowymi lasu, a więc las składa się z drzew. \\
+Drzewo jest najmniejszym grafem spójnym, a więc jeśli chcemy zbudować graf
+spójny $G$ na zbiorze wierzchołków $V$, to $G$ musi być drzewem.
+
+\subsection*{Liść}
+Liść to wierzchołek o stopniu $1$. Dowolne drzewo o $n \geq 2$ wierzchołkach 
+zawiera przynajmniej $2$ liście.
+
+\subsection*{Most}
+Most to krawędź, której usunięcie zwiększa liczbę spójnych składowych grafu,
+ponadto żaden most nie leży na cyklu.
+
+\subsection*{Charakteryzacja drzewa}
+Niech $G = (V, E)$ będzie $n$-wierzchołkowym grafem nieskierowanym ($n \geq 1$).
+Wtedy wszystkie następujące stwierdzenia są równoważne: \\
+1. $G$ jest spójny i acykliczny ($G$ jest drzewem). \\
+2. $G$ jest spójny i ma $n-1$ krawędzi. \\
+3. $G$ jest acykliczny i ma $n-1$ krawędzi. \\
+4. Dla każdego $u, v \in V$ w $G$ jest tylko jedna $u-v$-ścieżka. \\
+5. $G$ jest spójny i każda krawędź jest mostem. \\
+6. $G$ nie ma cykli, ale dołożenie jakiejkolwiek krawędzi tworzy cykl.
+
+\subsection*{Graf dwudzielny}
+Graf $G = (V, E)$ jest dwudzielny wtw, gdy istnieje podział zbioru $V$ na 
+zbiory $A$ i $B$ taki, że dla każdej krawędzi $e \in E$ jeden koniec $e$
+należy do zbioru $A$, a drugi do zbioru $B$. Podział wierzchołków nie zawsze
+jest jednoznaczny! \\
+Graf $G$ jest dwudzielny wtw, gdy nie zawiera cyklu o nieparzystej długości.
+
+\subsection*{Lemat o zamkniętej marszrucie}
+Każda zamknięta marszruta o nieparzystej długości zawiera cykl o nieparzystej
+długości.
+
+\subsection*{Graf o minimalnym stopniu $k$}
+Niech $G$ będzie grafem prostym, w którym każdy wierzchołek ma stopień 
+przynajmniej $k$. Wówczas $G$ zawiera ścieżkę o długości $k$. Jeśli $k \geq 2$,
+to $G$ zawiera cykl o długości przynajmniej $k+1$.
+
+\subsection*{Drzewo rozpinające}
+Niech $G = (V, E)$ będzie grafem spójnym. Drzewo rozpinające grafu $G$ to 
+podgraf $T = (V, E^\prime)$, który jest drzewem. $T$ zawiera wszystkie
+wierzchołki grafu $G$.
+
+\subsection*{Las rozpinający}
+Niech $G = (V, E)$ będzie grafem niekoniecznie spójnym. Las rozpinający
+grafu $G$ to podgraf $F = (V, E^\prime)$, który jest lasem, którego liczba
+spójnych składowych jest taka sama jak liczba spójnych składowych grafu $G$.
+
+\subsection*{Minimalne drzewo rozpinające (MST)}
+Niech $G = (V, E)$ będzie grafem spójnym o nieujemnych wagach na krawędziach, a
+graf $T = (V, E^\prime)$ jego drzewem rozpinającym. \\
+Wagę definiuje funkcja $c : E \to \mathbb{R}_+$. Wtedy wagą drzewa rozpinającego
+$c(T) = \sum\limits_{e \in E^\prime} c(e)$. Minimalnym drzewem rozpinającym (MST)
+grafu $G$ jest drzewo rozpinające $T$ o minimalnej wadze.
+
+\subsection*{Algorytmy na znajdowanie MST}
+\textbf{Algorytm Kruskala} polega na dodawaniu kolejnych krawędzi w taki sposób,
+aby nie stworzyły one żadnego cyklu.
+\begin{lstlisting}[style=code]
+KRUSKAL:
+sort(E) wzgledem wagi
+T = {}
+for i in [1, m]:
+    if (T + {e(i)} nie tworzy 
+        zadnego cyklu):
+        T = T + {e(i)}
+\end{lstlisting}
+
+\textbf{Algorytm Prima} polega na dobieraniu najlżejszych krawędzi do grafu $T$.
+\begin{lstlisting}[style=code]
+PRIM:
+T = {}
+U = {1} (dowolny wierzcholek G)
+while (U != V):
+    e = najlzejsza krawedz (u, v),
+        taka ze u jest z U, 
+        a v jest z V-U
+    T = T + {(u, v)}  
+    U = U + {v}
+\end{lstlisting}
+
+\textbf{Algorytm Boruvki} polega na dodawaniu najlżejszych krawędzi do $T$, łączeniu
+ich w superwierzchołki i wykonywaniu algorytmu od początku.
+\begin{lstlisting}[style=code]
+BORUVKA:
+T = V
+while (T != MST):
+    wybierz najmniejsza krawedz
+    z najmniejsza waga i dodaj
+    ja do zbioru E'
+
+    gdy jest wiecej niz jedna
+    spojna skladowa, polacz 
+    wszystkie wierzcholki w
+    superwierzcholki i wykonaj
+    algorytm od poczatku
+\end{lstlisting}
+
+\subsection*{Skojarzenie (matching)}
+Niech $G = (V, E)$ będzie grafem spójnym. Skojarzenie grafu $G$ to dowolny pozdbiór
+krawędzi $M \subseteq E$ taki, że żadne dwie krawędzie z $M$ nie mają wspólnego końca.
+
+\subsection*{Największe skojarzenie}
+Skojarzenie największe grafu $G$ to skojarzenie o maksymalnej liczbie krawędzi.
+
+\subsection*{Wierzchołki skojarzone, wolne}
+Niech $G = (V, E)$ będzie grafem spójnym, a $M$ jakimś skojarzeniem w $G$.
+Wierzchołek $v \in V$ jest skojarzony w $M$, jeśli jest końcem jakiejś krawędzi
+z $M$. Wierzchołek $v \in V$ jest wolny/nieskojarzony, jeśli żadna krawędź z $M$
+nie jest z nim incydentna.
+
+\subsection*{Ścieżka alternująca}
+Ścieżka $P$ w grafie $G$ jest alternująca (względem $M$) jeśli krawędzie na $P$
+na przemian należą i nie należą do $M$.
+
+\subsection*{Ścieżka powiększająca}
+Ścieżka $P$ w grafie $G$ jest powiększająca (względem $M$), jeśli jest 
+alternująca względem $M$ i jej końce są nieskojarzone (w $M$).
+
+\subsection*{Skojarzenie doskonałe/pełne}
+Skojarzenie doskonałe/pełne grafu $G$ to skojarzenie, w którym każdy
+wierzchołek z $V$ jest skojarzony.
+
+\subsection*{Cykl alternujący}
+Cykl $C$ w grafie $G$ jest alternujący względem $M$ jeśli krawędzie na $C$
+na przemian należą i nie należą do $M$.
+
+\subsection*{Twierdzenie Berge'a}
+Skojarzenie $M$ grafu $G$ jest największe wtw, gdy $G$ nie zawiera ścieżki
+powiększającej względem $M$.
+
+\subsection*{Sąsiedztwo wierzchołków}
+Niech $G = (V, E)$ będzie grafem a $W \subseteq V$ podzbiorem wierzchołków.
+Sąsiedztwo $W$ oznaczane jako $N(W)$ definiujemy jako zbiór \\
+$\{ v \in V : \exists(w \in W) \ \{ v, w\} \in E \}$.
+
+\subsection*{Warunek Halla}
+Niech graf $G = (A \cup B, E)$ będzie grafem dwudzielnym. \\
+Dla każdego $A^\prime \subseteq A$ zachodzi 
+$\abs{N(A^\prime)} \geq \abs{A^\prime}$ oraz dla każdego $B^\prime \subseteq B$ 
+zachodzi $\abs{N(B^\prime)} \geq \abs{B^\prime}$.
+
+\subsection*{Skojarzenie doskonałe w grafie dwudzielnym}
+Graf dwudzielny $G$ zwiera skojarzenie doskonałe wtw, gdy spełniony jest 
+w nim warunek Halla. 
