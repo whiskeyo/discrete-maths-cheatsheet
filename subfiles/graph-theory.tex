@@ -254,3 +254,52 @@ zachodzi $\abs{N(B^\prime)} \geq \abs{B^\prime}$.
 \subsection*{Skojarzenie doskonałe w grafie dwudzielnym}
 Graf dwudzielny $G$ zwiera skojarzenie doskonałe wtw, gdy spełniony jest 
 w nim warunek Halla. 
+
+\subsection*{Waga ścieżki, najlżejsza ścieżka}
+Waga ścieżki $P$ to suma wag krawędzi leżących na $P$. Najlższejsza/najkrótsza
+(względem $c : E \to \mathbb{R}_+$) ścieżka z $s$ do $t$ to ta, która ma 
+najmniejszą wagę. \\
+Niech $S \subseteq V$, a $s$ będzie ustalonym wierzchołkiem z $V$. Ścieżka $P$
+z $s$ do $v$ jest prawie $S$-owa/osiągalna bezpośrednio z $S$, jeśli wszystkie
+wierzchołki na $P$ oprócz $v$ są w $S$. \\
+$d(v)$ to waga najkrótszej ścieżki z $s$ do $v$. \\
+$t(v)$ to waga najkrótszej prawie $S$-owej ścieżki z $s$ do $v$, a gdy taka
+ścieżka nie istnieje, to $t(v) = \infty$.
+
+\subsection*{Algorytm Dijkstry}
+Algorytm Dijkstry służy do znajdowania wagi najkrótszych ścieżek.
+\begin{lstlisting}[style=code]
+DIJKSTRA:
+  S = {s}
+  d(s) = 0
+
+  for each neighbour v of s:
+    t(v) = c(s, v)
+  for other vertices:
+    while (S != V):
+      u = argmin{t(u): u not in S}
+      S = S + {u}
+      update all t(v):
+        for each neighbour v 
+        (not in S) of vertex u:
+          t(v) = min{t(v),
+                     d(u)+c(u,v)}
+\end{lstlisting}
+
+\subsection*{Pokrycie wierzchołkowe}
+Niech $G = (V, E)$ będzie grafem. Pokrycie wierzchołkowe $G$ to dowolny
+pozdbiór $V^\prime \subseteq V$ taki, że każda krawędź z $E$ ma przynajmniej
+jeden z końców w $V^\prime$.
+
+\subsection*{Najmniejsze pokrycie wierzchołkowe}
+Najmniejsze pokrycie wierzchołkowe grafu $G$ to to spośród pokryć
+wierzchołkowych $G$, które zawiera najmniej wierzchołków.
+
+\subsection*{Pokrycie wierzchołkowe a skojarzenie}
+Niech $G = (V, E)$ będzie grafem. Niech $M$ będzie jakimś skojarzeniem $G$, 
+a $W$ jakimś pokryciem wierzchołkowym. Wtedy $\abs{M} \leq \abs{W}$.
+
+\subsection*{Twierdzenie Koeniga}
+Niech $G = (V, E)$ będzie grafem dwudzielnym, $M_{\max}$ największym skojarzeniem
+$G$, a $W_{\min}$ najmniejszym pokryciem wierzchołkowym. Wtedy 
+$\abs{M_{\max}} = \abs{W_{\min}}$.
