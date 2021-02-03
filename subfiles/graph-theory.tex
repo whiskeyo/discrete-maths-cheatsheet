@@ -26,6 +26,10 @@ do $u$. Każda pętla incydentna do $u$ dokłada się do stopnia $u$ liczbą $2$
 Niech $G = (V, E)$ będzie nieskierowanym grafem. Wtedy
 $\sum\limits_{v \in V} \deg(v) = 2 \abs{E}$.
 
+\subsection*{Lemat o uściskach dłoni dla grafu skierowanego}
+Niech $G = (V, E)$ będzie skierowanym grafem. Wtedy
+$\sum\limits_{v \in V} \deg_\text{in}(v) = \deg_\text{out}(v)$.
+
 \subsection*{Reprezentacje grafów}
 Graf można reprezentować za pomocą list sąsiadów, macierzy sąsiedztwa lub macierzy
 incydencji.
@@ -207,6 +211,23 @@ BORUVKA:
 Wszystkie powyżej przedstawione algorytmy działają w czasie \\
 $O(\abs{E} \cdot \log \abs{V})$.
 
+\textbf{Algorytm Reverse-delete} polega na usuwaniu kolejnych krawędzi aby otrzymać $MST$.
+\begin{lstlisting}[style=code]
+KRUSKAL(edges[] E):
+  sort(E) malejaco wzgledem wagi
+  i = 0
+  
+  while i < size(E):
+    edge = E[i]
+    usun E[i]
+    if graf nie jest spojny:
+      E[i] = edge
+      i = i + 1
+
+  return edges[] E    
+\end{lstlisting}
+Złożoność czasowa tego algorytmu to $O(E \log V (\log \log V)^3)$.
+
 \subsection*{Skojarzenie (matching)}
 Niech $G = (V, E)$ będzie grafem spójnym. Skojarzenie grafu $G$ to dowolny pozdbiór
 krawędzi $M \subseteq E$ taki, że żadne dwie krawędzie z $M$ nie mają wspólnego końca.
@@ -303,3 +324,229 @@ a $W$ jakimś pokryciem wierzchołkowym. Wtedy $\abs{M} \leq \abs{W}$.
 Niech $G = (V, E)$ będzie grafem dwudzielnym, $M_{\max}$ największym skojarzeniem
 $G$, a $W_{\min}$ najmniejszym pokryciem wierzchołkowym. Wtedy 
 $\abs{M_{\max}} = \abs{W_{\min}}$.
+
+\subsection*{Droga i cykl Eulera}
+Niech $G = (V, E)$ będzie grafem spójnym nieskierowanym, niekoniecznie prostym.
+Droga Eulera grafu $G$ to droga (krawędzie się nie powtarzają, wierzchołki mogą),
+która zawiera każdą krawędź $e \in E$. Cykl Eulera grafu $G$ to droga zamknięta
+(wierzchołek startowy jest taki sam jak końcowy), która zawiera każdą krawędź 
+$e \in E$.
+
+\subsection*{Warunki istnienia drogi/cyklu Eulera}
+Spójny graf $G$ posiada drogę Eulera wtw, gdy zawiera $0$ lub $2$ wierzchołki
+o stopniu nieparzystym. Spójny graf $G$ posiada cykl Eulera wtw, gdy wszystkie
+jego wierzchołki mają stopień parzysty. W grafie skierowanym warunkiem na istnienie
+cyklu Eulera jest taka sama liczba krawędzi wychodzących i wchodzących dla każdego
+wierzchołka. \\
+
+Aby spójny graf skierowany miał drogę Eulera, muszą zachodzić: \\
+1. dla dokładnie jednego wierzchołka jest $\deg_\text{in}(v) = \deg_\text{out}(v) + 1$, \\
+2. dla dokładnie jednego wierzchołka jest $\deg_\text{in}(v) + 1 = \deg_\text{out}(v)$, \\
+3. dla każdego innego niż dwa powyższe wierzchołki jest 
+$\deg_\text{in}(v) = \deg_\text{out}(v)$.
+
+\subsection*{Ścieżka i cykl Hamiltona}
+Niech $G = (V, E)$ będzie grafem spójnym nieskierowanym. Ścieżka Hamiltona grafu
+$G$ to ścieżka (wierzchołki się nie powtarzają), która zawiera każdy wierzchołek
+$v \in V$. Cykl Hamiltona grafu $G$ to cykl (wierzchołki się nie powtarzają),
+który zawiera każdy wierzchołek $v \in V$.
+
+\subsection*{Warunki istnienia drogi/cyklu Hamiltona}
+Sprawdzenie, czy graf $G = (V, E)$ zawiera ścieżkę lub cykl Hamiltona jest 
+problemem trudnym obliczeniowo - jest to problem NP-trudny.
+
+\subsection*{Warunki konieczne na istnienie cyklu Hamiltona}
+Jeśli graf $G = (A \cup B, E)$ jest dwudzielny, to warunkiem koniecznym na istnienie
+cyklu Hamiltona jest $\abs{A} = \abs{B}$. \\ 
+Jeśli graf $G = (V, E)$ zawiera cykl Hamiltona, to dla dowolnego zbioru $S \subseteq V$,
+graf $G - S$ (powstały po usunięciu wierzchołków z $S$ wraz z incedyntnymi krawędziami)
+zawiera co najmniej $\abs{S}$ spójnych składowych.
+
+\subsection*{Twierdzenie Diraca}
+Jeśli graf $G = (V, E)$ jest grafem prostym o co najmniej trzech wierzchołkach
+i minimalnym stopniu wierzchołka $\delta (G) \geq \frac{\abs{V}}{2}$, to $G$ zawiera
+cykl Hamiltona.
+
+\subsection*{Twierdzenie Ore'a (albo Orego)}
+Jeśli graf $G = (V, E)$ jest grafem prostym o co najmniej trzech wierzchołkach i takim,
+że dla każdych dwóch wierzchołków $u$ i $v$ niepołączonych krawędzią zachodzi 
+$\deg (u) + \deg (v) \geq \abs{V}$, to $G$ zawiera cykl Hamiltona.
+
+\subsection*{Obliczanie najmniejszego wagowo cyklu Hamiltona}
+Odległości między krawędziami zapisane są jako funkcja wagi $c: E \to R \geq 0$.
+Zakładamy, że skrót zawsze się opłaca, czyli 
+$\forall u, v, w \in V: \ c(u,v) \leq c(u,w) + c(w, v)$. Niech $OPT$ oznacza
+sumaryczną długość optymalnej trasy. Wtedy $c(MST(G)) \leq OPT$. \\
+Algorytm na obliczenie najmniejszego wagowo cyklu Hamiltona jest następujący: \\
+1. Oblicz $MST(G)$. \\
+2. Podwój $MST(G)$ otrzymując $T^2$. \\
+3. Znajdź cykl Eulera $C_E$ podwojonego $MST(G)$, czyli $T^2$. \\
+4. Skróć $C_E$ do cyklu Hamiltona. \\
+Tak obliczona trasa ma wagę $\leq 2 OPT$.
+
+\subsection*{Algorytm Christofidesa (najmniejszy wagowo cykl Hamiltona)}
+1. Oblicz $MST(G)$. \\
+2. Oblicz najmniejsze wagowo skojarzenie pełne $M$ na podgrafie zawierającym
+wierzchołki $V^{-}$, które mają stopień nieparzysty w $MST(G)$. \\
+3. Znajdź cykl Eulera $C_E$ multigrafu $MST(G) + M$. \\
+4. Skróć $C_E$ do cyklu Hamiltona. \\
+Tak otrzymana trasa ma wagę $\leq \frac{3}{2} OPT$.
+
+\subsection*{Kolorowanie grafu}
+Niech graf $G = (V, E)$ będzie grafem prostym. Kolorowaniem wierzchołkowym
+grafu $G$ nazywamy funkcję $f: V \to \text{Kolory}$ taką, że 
+$\forall (u, v) \in E: \ f(u) \neq f(v)$. Liczba chromatyczna grafu $G$ 
+(oznaczana $\chi (G)$) to najmniejsza liczba kolorów, jaką można pokolorować 
+graf $G$.
+
+\subsection*{Własności liczby chromatycznej}
+Przez $\omega (G)$ oznaczamy wielkość największej kliki zawartej w $G$.
+Wtedy $\chi (G) \geq \omega (G)$. $\Delta (G)$ to największy stopień wierzchołka
+w $G$. Wtedy $\chi (G) \leq \Delta (G) + 1$.
+
+\subsection*{Twierdzenie Brooksa}
+Jeśli $G$ nie jest kliką ani nieparzystym cyklem, to $\chi (G) \leq \Delta (G)$.
+
+\subsection*{Algorytm sekwencyjny kolorowania grafu}
+Niech $\text{Kolory} = \{ 1, 2, 3, \dots \}$ i $G = (V, E)$. Wtedy algorytmem
+sekwencyjnym jest: \\
+1. Ustaw wierzchołki z $V$ w pewien ciąg. \\
+2. Dla każdego wierzchołka $v$ w kolejności dyktowanej przez ciąg wykonaj:
+przypisz wierzchołkowi $v$ najmniejszą liczbę naturalną spośród takich, które
+nie są przypisane żadnemu sąsiadowi $v$.
+
+\subsection*{Graf planarny}
+Graf $G$ jest planarny, gdy da się go narysować na płaszczyźnie w taki sposób,
+by żadne dwie krawędzie się nie przecinały.
+
+\subsection*{Rysunek grafu}
+Łamana (linia wielokątna, linia łamana) to ciąg skończenie wielu odcinków,
+z których każdy zaczyna się tam, gdzie kończy poprzedni; poza tym żadne dwa
+odcinki nie mają punktów wspólnych. \\
+Rysunek grafu $G = (V, E)$ na płaszczyźnie to funkcja różnowartościowa $f$ taka,
+że odwzorowuje każdy wierzchołek $v \in V$ na punkt $f(v)$ płaszczyzny oraz każdą
+krawędź $(u, v)$ na łamaną łączącą $f(u)$ z $f(v)$. \\
+Mówimy, że rysunek nie ma przecięć, jeśli dla dowolnych dwóch krawędzi $e, e^\prime$,
+$f(e) \cap f(e^\prime)$ może zawierać jedynie obrazy wspólnych końców $e$ i $e^\prime$. \\
+Graf $G$ jest planarny, jeśli posiada rysunek bez przecięć. 
+
+\subsection*{Graf płaski}
+Konkretny rysunek bez przecięć grafu $G$ nazywamy grafem płaskim. \\
+Ściana takiego grafu to spójny obszar płaszczyzny po usunięciu linii reprezentujących 
+krawędzie. Innymi słowy, ściana to zbiór punktów płaszczyzny, które da się połączyć
+krzywą nieprzecinającą żadnej krawędzi. \\
+Granica ściany zawiera krawędzie styczne z tą ścianą. Długość granicy ściany to
+długość zamkniętej marszruty przechodzącej przez wszystkie krawędzie granicy tej 
+ściany. Niech $f_i$ oznacza długość granicy $i$-tej ściany grafu planarnego $G = (V, E)$,
+a $l$ liczbę ścian $G$. Wtedy $\sum\limits_{i=1}^{l} f_i = 2 \abs{E}$.
+
+\subsection*{Twierdzenie Jordana}
+Zamknięta nieprzecinająca się łamana $C$ o skończonej liczbie odcinków dzieli
+płaszczyznę na dokładnie dwie ściany, z których każda ma $C$ jako granicę.
+
+\subsection*{Graf dualny}
+Niech $G = (V, E)$ będzie grafem planarnym. Graf dualny $G*$ dla grafu płaskiego
+$G$ tworzy się następująco: dla każdej ściany (włącznie ze ścianą zewnętrzną) grafu
+$G$ dodajemy wierzchołek. Jeśli dwie ściany mają wspólną krawędź $e$, łączymy
+wierzchołki utworzone w poprzednim kroku odpowiednie dla sąsiadujących ścian
+krawędzią przecinającą tylko krawędź $e$. Graf dualny nie jest wyznaczony 
+jednoznacznie (zależy od rysunku $G$).
+
+\subsection*{Wzór Eulera}
+Niech $G$ będzie spójnym grafem planarnym (niekoniecznie prostym) o $n$ wierzchołkach,
+$m$ krawędziach i $f$ ścianach. Wówczas $n - m + f = 2$. Dla niespójnego grafu o $k$
+spójnych składowych jest to wzór $n - m + f = k - 1$.
+
+\subsection*{Liczba krawędzi grafu planarnego}
+Niech $G$ będzie prostym grafem planarnym o $n \geq 3$ wierzchołkach. Wówczas liczba
+krawędzi $m$ tego grafu nie przekracza $3n - 6$. Jeśli dodatkowo, $G$ nie zawiera
+żadnego trójkąta, to $m \leq 2n - 4$.
+
+\subsection*{Grafy homeomorficzne}
+Grafy $G$ i $H$ są homeomorficzne, gdy jeden można przekształcić do drugiego za pomocą
+skończonej liczby operacji następujących dwóch typów: \\
+1. zamian krawędzi na ścieżkę o długości $2$, tj. w ten sposób dodajemy również
+jeden nowy wierzchołek, \\
+2. zamiana ścieżki $P = (u, v, w)$ takiej, że $v$ ma stopień $2$ na krawędź $(u, w)$,
+jednocześnie usuwając $v$.
+
+\subsection*{Twierdzenie Kuratowskiego}
+Graf $G$ jest planarny wtedy i tylko wtedy, gdy nie zawiera podgrafu homeomorficznego
+z $K_{3, 3}$ lub $K_5$.
+
+\subsection*{Twierdzenie Heawooda}
+Każdy graf planarny jest $5$-kolorowalny.
+
+\subsection*{Sieć, przepływ w sieci}
+Sieć to graf skierowany (digraf) $D = (V, E)$ z dwoma wyróżnionymi wierzchołkami
+$s, t \in V$ zwanymi źródłem i ujściem i funkcją przepustowości $c: E \to R \geq 0$
+na krawędziach. Niech $f: E \to R$, dla $v \in V$ definujemy 
+$f^+(v) = \sum\limits_{e = (v, w): e \in E, w \in V} f(v, w)$ oraz
+$f^-(v) = \sum\limits_{e = (w, v): e \in E, w \in V} f(w, v)$. \\ 
+Funkcja $f$ jest przepływem, jeśli spełnia warunki przepustowości 
+$\forall e \in E: \ 0 \leq f(e) \leq c(e)$ oraz jeśli spełnia warunek zachowania
+przepływu: $\forall v \in V \{s, t\}: \ f^+(v) = f^-(v)$. Wartość przepływu $f$,
+oznaczana jako $\abs{f}$ to $f^-(t) - f^+(t)$.
+
+\subsection*{Ścieżka powiększająca}
+Ścieżka powiększająca $P$ dla przepływu $f$ to ścieżka postaci
+$(s = v_0, e_1, v_1, e_2, v_2, \dots, e_k, v_k, e_{k+1}, t = v_{k+1})$ taka,
+że: \\
+$\forall 0 \leq i \leq k: \ e_{i+1} \in E \wedge (e_{i+1} = (v_i, v_{i+1})
+\vee e_{i+1} = (v_{i+1}, v_i)$, \\
+$\forall 0 \leq i \leq k: \ e_{i+1} = (v_i, v_{i+1}) \Longrightarrow
+f(e_{i+1}) < c(e_{i+1})$ (krawędź w przód), \\
+$\forall 0 \leq i \leq k: \ e_{i+1} = (v_{i+1}, v_i) \Longrightarrow
+f(e_{i+1}) > 0$ (krawędź w tył). \\
+Luz ścieżki powiększającej $P$ to minimum z dwóch minimów: 
+$\min\{ c(e) - f(e) \}$ po wszystkich krawędziach w przód ścieżki oraz
+$\min\{ f(e) \}$ po wszystkich krawędziach wstecznych.
+
+\subsection*{Zastosowanie ścieżki powiększającej}
+Weźmy ścieżkę powiększającą $P$ taką jak powyżej dla przepływu $f$ o luzie $\epsilon$.
+Zastosować $P$ do przepływu $f$ oznacza funkcję $f^\prime$ taką, że: \\
+1. dla $e \in E \setminus P: f^\prime(e) = f(e)$, \\
+2. dla $e \in P$ w przód: $f^\prime(e) = f(e) + \epsilon$, \\
+3. dla $e \in P$ wstecznej: $f^\prime(e) = f(e) - \epsilon$. \\
+
+Lemat: $f^\prime$ jest przepływem takim, że $\abs{f^\prime} = \abs{f^\prime} + \epsilon$.
+
+\subsection*{Algorytm Forda-Fulkersona}
+Niech $D = (V, E)$ będzie digrafem spójnym, $c: E \to R \geq 0$, $s, t \in V$ oraz
+$\forall e \in E: \ f(e) \leftarrow 0$. Wtedy algorytm jest taki: \\
+Dopóki istnieje ścieżka powiększająca $P$ dla $f$, wykonaj: \\
+1. zastosuj $P$ do $f$, otrzymując $f^\prime$, \\
+2. $f \leftarrow f^\prime$.
+
+\subsection*{Algorytm znajdowania ścieżki powiększającej}
+1. $R \leftarrow \{ s \}$. \\
+2. Dopóki można, wykonuj: \\
+2.1. Jeśli istnieje krawędź $e = (u, v): u \in R, v \notin R, f(e) < c(e)$,
+     to dodaj $v$ do $R$. \\
+2.2. Jeśli istnieje krawędź $e = (v, u): u \in R, v \notin R, f(e) > 0$,
+     to dodaj $v$ do $R$. \\
+Jeżeli $R$ zawiera $t$, to znaczy, że istnieje ścieżka powiększająca $P$ dla $f$.
+
+\subsection*{Przepustowość przekroju}
+$[S, T]$ to $s-t$ przekrój, jeśli $s \in S, t \in T, S \cup T = V, S \cap T = \emptyset$.
+Przepustowość przekroju: \\
+$c([S, T]) = \sum\limits_{e=(u,v) \in E: \ u \in S, v \in T} c(e)$. \\
+
+Lemat: Niech $U \subset V$. Wtedy $f^+(U) - f^-(U) = 
+\sum\limits_{v \in V} f^+(v) - f^-(v)$. Dla dowolnego $s-t$ przekroju $[S, T]$
+zachodzi $\abs{f} \leq c([S, T])$.
+
+\subsection*{Maksymalny przepływ, minimalne cięcie}
+Twierdzenie: przepływ $f$ obliczony przez algorytm Forda-Fulkersona ma wartość
+równą przepustowości pewnego $s-t$ przekroju. Zatem jest maksymalny. \\
+
+Przepływ całkowitoliczbowy: jeśli przepustowość każdej krawędzi w sieci jest liczbą
+całkowitą, to istnieje przepływ $f$ maksymalny, który jest całkowitoliczbowy.
+
+\subsection*{Zastosowania przepływów}
+Są to między innymi znajdowanie największego skojarzenia w grafach dwudzielnych, jak
+i znajdowanie największego $b$-skojarzenia w grafach dwudzielnych. \\
+
+Niech $b: V \in N$. Wtedy $M \subseteq E$ jest $b$-skojarzeniem, jeśli
+$\forall v \in V: \ \deg_M (v) \leq b(v)$ (liczba krawędzi z $M$ incydentna do $v$
+nie przekracza $b(v)$).
